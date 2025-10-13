@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIVAS - 激光同轴校准设备</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            border-bottom: 2px solid #2c84d0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: clamp(22px, 5vw, 28px);
+            color: #2c84d0;
+            margin-bottom: 10px;
+        }
+        .header .update-time {
+            color: #666;
+            font-size: 14px;
+        }
+        .section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .section h2 {
+            font-size: clamp(18px, 4vw, 22px);
+            color: #2c84d0;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .info-list {
+            list-style: none;
+        }
+        .info-list li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .info-list li span {
+            font-weight: bold;
+            color: #555;
+            min-width: 100px;
+            flex-shrink: 0;
+        }
+        .feature-list {
+            list-style: disc;
+            padding-left: 20px;
+        }
+        .feature-list li {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .tech-table th, .tech-table td {
+            border: 1px solid #eee;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        .tech-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .tech-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        .company-intro {
+            margin-top: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .download-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            flex: 1;
+            min-width: 200px;
+            justify-content: center;
+        }
+        .download-btn.ios {
+            background-color: #000;
+        }
+        .download-btn.android {
+            background-color: #3ddc84;
+            color: #000;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .download-btn i {
+            font-size: 20px;
+        }
+        .wechat-tip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 20px;
+        }
+        .wechat-tip-content {
+            color: white;
+            text-align: center;
+            max-width: 300px;
+            padding: 20px;
+        }
+        .wechat-tip-content p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .wechat-icon {
+            font-size: 120px;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .wechat-icon::after {
+            content: 'ⓘ';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background-color: #2c84d0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 微信环境提示弹窗 -->
+    <div class="wechat-tip" id="wechatTip">
+        <div class="wechat-tip-content">
+            <div class="wechat-icon">
+                <i class="fab fa-weixin"></i>
+            </div>
+            <p>请点击右上角 <i class="fas fa-ellipsis-v"></i> 图标</p>
+            <p>选择「在默认浏览器中打开」以下载应用</p>
+        </div>
+    </div>
+    <!-- 头部标题区域 -->
+    <div class="header">
+        <h1>AIVAS APP</h1>
+        <h1>激光同轴校准设备</h1>
+    </div>
+
+    <!-- 应用基础信息区域 -->
+    <div class="section">
+        <h2>应用基础信息</h2>
+        <ul class="info-list">
+            <li><span>软件名称：</span>AIVAS</li>
+            <li><span>当前版本：</span>v1.1</li>
+            <li><span>支持系统：</span>iOS/Android</li>
+            <li><span>更新时间：</span>2025-08-28</li>
+        </ul>
+        
+        <!-- 下载按钮区域 -->
+        <div class="download-buttons">
+            <a href="#" class="download-btn ios" id="iosDownload">
+                <i class="fab fa-apple"></i>
+                <span>App Store 下载</span>
+            </a>
+            <a href="#" class="download-btn android" id="androidDownload">
+                <i class="fas fa-download"></i>
+                <span>安卓 APK 下载</span>
+            </a>
+        </div>
+    </div>
+    <!-- 技术规格区域 -->
+    <div class="section">
+        <h2>技术规格</h2>
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>平台</th>
+                    <th>版本号</th>
+                    <th>应用大小</th>
+                    <th>系统要求</th>
+                    <th>兼容设备/架构</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>iOS版本</td>
+                    <td>v1.1 (Build 18)</td>
+                    <td>96.6 MB</td>
+                    <td>iOS 15.6 或更高版本</td>
+                    <td>iPhone、iPad</td>
+                </tr>
+                <tr>
+                    <td>Android版本</td>
+                    <td>v1.0 (Build 18)</td>
+                    <td>94.2 MB</td>
+                    <td>Android 10.0 (API 26) 或更高版本</td>
+                    <td>ARM64, ARMv7</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 关于AIVAS区域 -->
+    <div class="section">
+        <h2>关于AIVAS APP</h2>
+        <p class="company-intro">
+            传统同轴校准依赖人工经验，耗时3-5分钟，且易因人为误差导致边，缘切割质量差，四边不一致，底部熔渣等问题。光启全新AIVSA视觉校准仪，依托AI视觉技术+高精度圆拟合算法，重塑校准流程，为您实现精度与效率的双重突破。
+        </p>
+    </div>
+
+    <!-- 核心功能特性区域 -->
+    <div class="section">
+        <h2>功能优势特点</h2>
+        <ul class="feature-list">
+            <li><strong>AI智能分析</strong>：高分辨率视觉传感器与AI智能算法，校准精度<0.08mm，AI视觉识别,手动调试一步到位</li>
+            <li><strong>高成功率</strong>：同轴调整成功率100%。</li>
+            <li><strong>安全可靠</strong>：红光模拟，免射激光，无风险，更安全。</li>
+        </ul>
+    </div>
+
+    <!-- 公司简介区域 -->
+    <div class="section">
+        <h2>公司简介</h2>
+        <p class="company-intro">
+            福州晋安光启智能科技有限公司是专业的工业自动化和智能制造解决方案提供商，同时也是一家专注于工业激光设备研发、生产和销售的高新技术企业。公司致力于为全球制造业客户提供高品质的激光加工设备和智能化解决方案，推动传统制造业向智能制造转型升级。
+        </p>
+    </div>
+    <script>
+        // 检测是否在微信环境中
+        function isWechatBrowser() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return userAgent.includes('micromessenger');
+        }
+
+        // 获取元素
+        const iosDownload = document.getElementById('iosDownload');
+        const androidDownload = document.getElementById('androidDownload');
+        const wechatTip = document.getElementById('wechatTip');
+
+        // 如果是微信环境，重写下载按钮点击事件
+        if (isWechatBrowser()) {
+            // 显示提示的函数
+            function showWechatTip(e) {
+                e.preventDefault(); // 阻止默认跳转
+                wechatTip.style.display = 'flex'; // 显示提示
+            }
+
+            // 为下载按钮添加点击事件
+            iosDownload.addEventListener('click', showWechatTip);
+            androidDownload.addEventListener('click', showWechatTip);
+
+            // 点击提示区域关闭提示
+            wechatTip.addEventListener('click', function() {
+                wechatTip.style.display = 'none';
+            });
+        } else {
+            // 非微信环境，可以设置实际下载链接
+            // iosDownload.href = '实际的App Store链接';
+            // androidDownload.href = '实际的APK下载链接';
+        }
+    </script>
+</body>
+</html>
