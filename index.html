@@ -279,37 +279,27 @@
         </p>
     </div>
     <script>
-        // 检测是否在微信环境中
         function isWechatBrowser() {
             const userAgent = navigator.userAgent.toLowerCase();
             return userAgent.includes('micromessenger');
         }
-
-        // 获取元素
         const iosDownload = document.getElementById('iosDownload');
         const androidDownload = document.getElementById('androidDownload');
         const wechatTip = document.getElementById('wechatTip');
-
-        // 如果是微信环境，重写下载按钮点击事件
         if (isWechatBrowser()) {
-            // 显示提示的函数
             function showWechatTip(e) {
-                e.preventDefault(); // 阻止默认跳转
-                wechatTip.style.display = 'flex'; // 显示提示
+                e.preventDefault(); 
+                wechatTip.style.display = 'flex'; 
             }
-
-            // 为下载按钮添加点击事件
             iosDownload.addEventListener('click', showWechatTip);
             androidDownload.addEventListener('click', showWechatTip);
 
-            // 点击提示区域关闭提示
             wechatTip.addEventListener('click', function() {
                 wechatTip.style.display = 'none';
             });
         } else {
-            // 非微信环境，可以设置实际下载链接
-            // iosDownload.href = '实际的App Store链接';
-            // androidDownload.href = '实际的APK下载链接';
+            iosDownload.href = 'https://apps.apple.com/cn/app/ai-vas/id6752219780';
+            androidDownload.href = 'https://wwpv.lanzouw.com/iP18m38cnlpi';
         }
     </script>
 </body>
