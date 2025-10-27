@@ -98,14 +98,14 @@
             font-size: 16px;
             line-height: 1.8;
         }
-        .download-buttons {
+        .action-buttons {  /* 统一按钮容器样式 */
             margin-top: 20px;
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
             justify-content: center;
         }
-        .download-btn {
+        .action-btn {  /* 统一按钮基础样式 */
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -113,7 +113,6 @@
             border-radius: 6px;
             text-decoration: none;
             font-weight: bold;
-            color: #fff;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
@@ -122,18 +121,23 @@
             min-width: 200px;
             justify-content: center;
         }
-        .download-btn.ios {
+        .action-btn.ios {
             background-color: #000;
+            color: #fff;
         }
-        .download-btn.android {
+        .action-btn.android {
             background-color: #3ddc84;
             color: #000;
         }
-        .download-btn:hover {
+        .action-btn.manual {  /* 用户手册按钮样式 */
+            background-color: #2c84d0;
+            color: white;
+        }
+        .action-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
-        .download-btn i {
+        .action-btn i {
             font-size: 20px;
         }
         .wechat-tip {
@@ -180,27 +184,6 @@
             align-items: center;
             font-size: 24px;
         }
-        /* PDF查看按钮样式 */
-        .pdf-view-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 6px;
-            background-color: #2c84d0;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .pdf-view-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            background-color: #246ba8;
-        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -231,18 +214,23 @@
             <li><span>更新时间：</span>2025-08-28</li>
         </ul>
         
-        <!-- 下载按钮区域 -->
-        <div class="download-buttons">
-            <a href="https://apps.apple.com/cn/app/ai-vas/id6752219780" class="download-btn ios" id="iosDownload">
+        <!-- 合并后的按钮区域（下载按钮 + 用户手册按钮） -->
+        <div class="action-buttons">
+            <a href="https://apps.apple.com/cn/app/ai-vas/id6752219780" class="action-btn ios" id="iosDownload">
                 <i class="fab fa-apple"></i>
                 <span>App Store 下载</span>
             </a>
-            <a href="https://wwpv.lanzouw.com/iP18m38cnlpi" class="download-btn android" id="androidDownload">
+            <a href="https://wwpv.lanzouw.com/iP18m38cnlpi" class="action-btn android" id="androidDownload">
                 <i class="fas fa-download"></i>
                 <span>安卓 APK 下载</span>
             </a>
+            <a href="info.pdf" target="_blank" class="action-btn manual" id="manualDownload">
+                <i class="fas fa-file-pdf"></i>
+                <span>查看用户手册</span>
+            </a>
         </div>
     </div>
+
     <!-- 技术规格区域 -->
     <div class="section">
         <h2>技术规格</h2>
@@ -274,17 +262,7 @@
             </tbody>
         </table>
     </div>
-    <!-- 用户手册PDF区域 -->
-    <div class="section">
-        <h2>VAS用户手册</h2>
-        <p style="margin-bottom: 15px; font-size: 16px;">
-            了解VAS的使用方法和操作设置, 请查看用户手册。
-        </p>
-        <a href="info.pdf" target="_blank" class="pdf-view-btn">
-            <i class="fas fa-file-pdf"></i>
-            <span>查看用户手册</span>
-        </a>
-    </div>
+
     <!-- 关于AIVAS区域 -->
     <div class="section">
         <h2>关于AIVAS APP</h2>
@@ -317,14 +295,18 @@
         }
         const iosDownload = document.getElementById('iosDownload');
         const androidDownload = document.getElementById('androidDownload');
+        const manualDownload = document.getElementById('manualDownload'); // 新增用户手册按钮引用
         const wechatTip = document.getElementById('wechatTip');
+        
         if (isWechatBrowser()) {
             function showWechatTip(e) {
                 e.preventDefault(); 
                 wechatTip.style.display = 'flex'; 
             }
+            // 为三个按钮都绑定微信环境提示事件
             iosDownload.addEventListener('click', showWechatTip);
             androidDownload.addEventListener('click', showWechatTip);
+            manualDownload.addEventListener('click', showWechatTip);
 
             wechatTip.addEventListener('click', function() {
                 wechatTip.style.display = 'none';
@@ -332,6 +314,7 @@
         } else {
             iosDownload.href = 'https://apps.apple.com/cn/app/ai-vas/id6752219780';
             androidDownload.href = 'https://wwpv.lanzouw.com/iP18m38cnlpi';
+            manualDownload.href = 'VAS用户手册.pdf'; // 非微信环境下的手册链接
         }
     </script>
 </body>
