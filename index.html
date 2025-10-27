@@ -295,7 +295,6 @@
         }
         const iosDownload = document.getElementById('iosDownload');
         const androidDownload = document.getElementById('androidDownload');
-        const manualDownload = document.getElementById('manualDownload'); // 新增用户手册按钮引用
         const wechatTip = document.getElementById('wechatTip');
         
         if (isWechatBrowser()) {
@@ -303,18 +302,14 @@
                 e.preventDefault(); 
                 wechatTip.style.display = 'flex'; 
             }
-            // 为三个按钮都绑定微信环境提示事件
             iosDownload.addEventListener('click', showWechatTip);
             androidDownload.addEventListener('click', showWechatTip);
-            manualDownload.addEventListener('click', showWechatTip);
-
             wechatTip.addEventListener('click', function() {
                 wechatTip.style.display = 'none';
             });
         } else {
             iosDownload.href = 'https://apps.apple.com/cn/app/ai-vas/id6752219780';
             androidDownload.href = 'https://wwpv.lanzouw.com/iP18m38cnlpi';
-            manualDownload.href = 'VAS用户手册.pdf'; // 非微信环境下的手册链接
         }
     </script>
 </body>
