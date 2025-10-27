@@ -296,7 +296,7 @@
         const iosDownload = document.getElementById('iosDownload');
         const androidDownload = document.getElementById('androidDownload');
         const wechatTip = document.getElementById('wechatTip');
-        
+        const yhsc = document.getElementById('manualDownload');
         if (isWechatBrowser()) {
             function showWechatTip(e) {
                 e.preventDefault(); 
@@ -304,6 +304,7 @@
             }
             iosDownload.addEventListener('click', showWechatTip);
             androidDownload.addEventListener('click', showWechatTip);
+            yhsc.addEventListener('click', showWechatTip);
             wechatTip.addEventListener('click', function() {
                 wechatTip.style.display = 'none';
             });
