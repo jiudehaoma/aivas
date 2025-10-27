@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIVAS - 激光同轴校准设备</title>
+    <title id="pageTitle">AIVAS - Laser Coaxial Calibration Device</title>
     <style>
+        /* 保持有样式保持不变 */
         * {
             margin: 0;
             padding: 0;
@@ -29,10 +30,6 @@
             font-size: clamp(22px, 5vw, 28px);
             color: #2c84d0;
             margin-bottom: 10px;
-        }
-        .header .update-time {
-            color: #666;
-            font-size: 14px;
         }
         .section {
             background-color: #fff;
@@ -98,14 +95,14 @@
             font-size: 16px;
             line-height: 1.8;
         }
-        .action-buttons {  /* 统一按钮容器样式 */
+        .action-buttons {
             margin-top: 20px;
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
             justify-content: center;
         }
-        .action-btn {  /* 统一按钮基础样式 */
+        .action-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -129,7 +126,7 @@
             background-color: #3ddc84;
             color: #000;
         }
-        .action-btn.manual {  /* 用户手册按钮样式 */
+        .action-btn.manual {
             background-color: #2c84d0;
             color: white;
         }
@@ -184,80 +181,105 @@
             align-items: center;
             font-size: 24px;
         }
+        .language-switch {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        .lang-btn {
+            padding: 5px 10px;
+            margin-left: 5px;
+            border: 1px solid #2c84d0;
+            background: transparent;
+            color: #2c84d0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .lang-btn.active {
+            background: #2c84d0;
+            color: white;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- 语言切换按钮 -->
+    <div class="language-switch">
+        <button class="lang-btn" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+
     <!-- 微信环境提示弹窗 -->
     <div class="wechat-tip" id="wechatTip">
         <div class="wechat-tip-content">
             <div class="wechat-icon">
                 <i class="fab fa-weixin"></i>
             </div>
-            <p>请点击右上角 <i class="fas fa-ellipsis-v"></i> 图标</p>
-            <p>选择「在默认浏览器中打开」以下载应用</p>
+            <p class="wechat-tip-1">Please click the top-right <i class="fas fa-ellipsis-v"></i> icon</p>
+            <p class="wechat-tip-2">Select "Open in default browser" to download the app</p>
         </div>
     </div>
+
     <!-- 头部标题区域 -->
     <div class="header">
         <h1>AIVAS APP</h1>
-        <h1>激光同轴校准设备</h1>
+        <h1 class="header-title">Laser Coaxial Calibration Device</h1>
     </div>
 
     <!-- 应用基础信息区域 -->
     <div class="section">
-        <h2>应用基础信息</h2>
+        <h2 class="section-title-1">App Basic Information</h2>
         <ul class="info-list">
-            <li><span>软件名称：</span>AIVAS</li>
-            <li><span>当前版本：</span>v1.1</li>
-            <li><span>支持系统：</span>iOS/Android</li>
-            <li><span>更新时间：</span>2025-08-28</li>
+            <li><span class="info-label-1">Software Name:</span><span class="info-content-1">AIVAS</span></li>
+            <li><span class="info-label-2">Current Version:</span><span class="info-content-2">v1.1</span></li>
+            <li><span class="info-label-3">Supported Systems:</span><span class="info-content-3">iOS/Android</span></li>
+            <li><span class="info-label-4">Update Time:</span><span class="info-content-4">2025-08-28</span></li>
         </ul>
         
-        <!-- 合并后的按钮区域（下载按钮 + 用户手册按钮） -->
+        <!-- 合并按钮区域 -->
         <div class="action-buttons">
             <a href="https://apps.apple.com/cn/app/ai-vas/id6752219780" class="action-btn ios" id="iosDownload">
                 <i class="fab fa-apple"></i>
-                <span>App Store 下载</span>
+                <span class="btn-ios">Download from App Store</span>
             </a>
             <a href="https://wwpv.lanzouw.com/iP18m38cnlpi" class="action-btn android" id="androidDownload">
                 <i class="fas fa-download"></i>
-                <span>安卓 APK 下载</span>
+                <span class="btn-android">Download Android APK</span>
             </a>
-            <a href="https://lightstart-1376045481.cos.ap-guangzhou.myqcloud.com/VAS%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf" target="_blank" class="action-btn manual" id="manualDownload">
+            <a href="" target="_blank" class="action-btn manual" id="manualDownload">
                 <i class="fas fa-file-pdf"></i>
-                <span>下载查看用户手册</span>
+                <span class="btn-manual">Download User Manual</span>
             </a>
         </div>
     </div>
 
     <!-- 技术规格区域 -->
     <div class="section">
-        <h2>技术规格</h2>
+        <h2 class="section-title-2">Technical Specifications</h2>
         <table class="tech-table">
             <thead>
                 <tr>
-                    <th>平台</th>
-                    <th>版本号</th>
-                    <th>应用大小</th>
-                    <th>系统要求</th>
-                    <th>兼容设备/架构</th>
+                    <th class="table-header-1">Platform</th>
+                    <th class="table-header-2">Version Number</th>
+                    <th class="table-header-3">App Size</th>
+                    <th class="table-header-4">System Requirements</th>
+                    <th class="table-header-5">Compatible Devices/Architectures</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>iOS版本</td>
+                    <td>iOS Version</td>
                     <td>v1.1</td>
                     <td>96.6 MB</td>
-                    <td>iOS 15.6 或更高版本</td>
-                    <td>iPhone、iPad</td>
+                    <td class="table-content-1">iOS 15.6 or later</td>
+                    <td class="table-content-2">iPhone, iPad</td>
                 </tr>
                 <tr>
-                    <td>Android版本</td>
+                    <td>Android Version</td>
                     <td>v1.0</td>
                     <td>94.2 MB</td>
-                    <td>Android 10.0 (API 26) 或更高版本</td>
-                    <td>ARM64, ARMv7</td>
+                    <td class="table-content-3">Android 10.0 (API 26) or later</td>
+                    <td class="table-content-4">ARM64, ARMv7</td>
                 </tr>
             </tbody>
         </table>
@@ -265,53 +287,216 @@
 
     <!-- 关于AIVAS区域 -->
     <div class="section">
-        <h2>关于AIVAS APP</h2>
-        <p class="company-intro">
-            传统同轴校准依赖人工经验，耗时3-5分钟，且易因人为误差导致边，缘切割质量差，四边不一致，底部熔渣等问题。光启全新AIVSA视觉校准仪，依托AI视觉技术+高精度圆拟合算法，重塑校准流程，为您实现精度与效率的双重突破。
+        <h2 class="section-title-3">About AIVAS APP</h2>
+        <p class="company-intro intro-1">
+            Traditional coaxial calibration relies on manual experience, taking 3-5 minutes, and is prone to problems such as poor edge cutting quality, inconsistent edges, and bottom slag due to human errors.
         </p>
     </div>
 
-    <!-- 核心功能特性区域 -->
+    <!-- 核心功能区域 -->
     <div class="section">
-        <h2>功能优势特点</h2>
+        <h2 class="section-title-4">Functional Advantages</h2>
         <ul class="feature-list">
-            <li><strong>AI智能分析</strong>：高分辨率视觉传感器与AI智能算法，校准精度<0.08mm，AI视觉识别,手动调试一步到位</li>
-            <li><strong>高成功率</strong>：同轴调整成功率100%。</li>
-            <li><strong>安全可靠</strong>：红光模拟，免射激光，无风险，更安全。</li>
+            <li><strong class="feature-title-1">AI Intelligent Analysis</strong>: <span class="feature-content-1">High-resolution visual sensor and AI intelligent algorithm</span></li>
+            <li><strong class="feature-title-2">High Success Rate</strong>: <span class="feature-content-2">100% success rate for coaxial adjustment.</span></li>
+            <li><strong class="feature-title-3">Safe and Reliable</strong>: <span class="feature-content-3">Red light simulation, no laser emission, no risk, safer.</span></li>
         </ul>
     </div>
 
     <!-- 公司简介区域 -->
     <div class="section">
-        <h2>公司简介</h2>
-        <p class="company-intro">
-            福州晋安光启智能科技有限公司是专业的工业自动化和智能制造解决方案提供商，同时也是一家专注于工业激光设备研发、生产和销售的高新技术企业。公司致力于为全球制造业客户提供高品质的激光加工设备和智能化解决方案，推动传统制造业向智能制造转型升级。
+        <h2 class="section-title-5">Company Introduction</h2>
+        <p class="company-intro intro-2">
+            Fuzhou Jin'an Guangqi Intelligent Technology Co., Ltd. is a professional provider of industrial automation and intelligent manufacturing solutions.
         </p>
     </div>
+
     <script>
-        function isWechatBrowser() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            return userAgent.includes('micromessenger');
-        }
-        const iosDownload = document.getElementById('iosDownload');
-        const androidDownload = document.getElementById('androidDownload');
-        const wechatTip = document.getElementById('wechatTip');
-        const yhsc = document.getElementById('manualDownload');
-        if (isWechatBrowser()) {
-            function showWechatTip(e) {
-                e.preventDefault(); 
-                wechatTip.style.display = 'flex'; 
+        // 语言资源对象 - 新增了手册链接配置
+        const langResources = {
+            en: {
+                pageTitle: "AIVAS - Laser Coaxial Calibration Equipment",
+                headerTitle: "Laser Coaxial Calibration Equipment",
+                sectionTitle1: "App Basic Information",
+                sectionTitle2: "Technical Specifications",
+                sectionTitle3: "About AIVAS APP",
+                sectionTitle4: "Functional Advantages",
+                sectionTitle5: "Company Introduction",
+                infoLabel1: "Software Name:",
+                infoLabel2: "Current Version:",
+                infoLabel3: "Supported Systems:",
+                infoLabel4: "Update Time:",
+                btnIos: "Download from App Store",
+                btnAndroid: "Download Android APK",
+                btnManual: "Download User Manual",
+                manualUrl: "https://lightstart-1376045481.cos.ap-guangzhou.myqcloud.com/VAS_User_Manual.pdf",
+                tableHeader1: "Platform",
+                tableHeader2: "Version Number",
+                tableHeader3: "App Size",
+                tableHeader4: "System Requirements",
+                tableHeader5: "Compatible Devices/Architectures",
+                tableContent1: "iOS 15.6 or later",
+                tableContent2: "iPhone, iPad",
+                tableContent3: "Android 10.0 (API 26) or later",
+                tableContent4: "ARM64, ARMv7",
+                intro1: "Traditional coaxial calibration relies on manual experience,taking 3-5 minutes. Moreover, it is prone to issues such as poorcutting quality, inconsistent edges on all four sides, and slag at the bottom due to human errors. Guangqi's brand-new VSA VisualCalibrator, leveraging AI visual technology and a high-precision circle fitting algorithm, reshapes the calibration process and helps you achieve dual improvements in accuracy and efficiency.",
+                featureTitle1: "AI Intelligent Analysis",
+                featureContent1: "High-resolution visual sensor and AI intelligent algorithm, calibration accuracy <0.08mm",
+                featureTitle2: "High Success Rate",
+                featureContent2: "100% success rate for coaxial adjustment.",
+                featureTitle3: "Safe and Reliable",
+                featureContent3: "Red light simulation, no laser emission, no risk, safer.",
+                intro2: "Fuzhou Jin'an Guangqi Intelligent Technology Co., Ltd. is a professional provider of industrial automation and intelligent manufacturing solutions.",
+                wechatTip1: "Please click the top-right <i class='fas fa-ellipsis-v'></i> icon",
+                wechatTip2: "Select 'Open in default browser' to download the app"
+            },
+            zh: {
+                pageTitle: "AIVAS - 激光同轴校准设备",
+                headerTitle: "激光同轴校准设备",
+                sectionTitle1: "应用基础信息",
+                sectionTitle2: "技术规格",
+                sectionTitle3: "关于AIVAS APP",
+                sectionTitle4: "功能优势特点",
+                sectionTitle5: "公司简介",
+                infoLabel1: "软件名称：",
+                infoLabel2: "当前版本：",
+                infoLabel3: "支持系统：",
+                infoLabel4: "更新时间：",
+                btnIos: "App Store 下载",
+                btnAndroid: "安卓 APK 下载",
+                btnManual: "下载用户手册",
+                manualUrl: "https://lightstart-1376045481.cos.ap-guangzhou.myqcloud.com/VAS%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf",
+                tableHeader1: "平台",
+                tableHeader2: "版本号",
+                tableHeader3: "应用大小",
+                tableHeader4: "系统要求",
+                tableHeader5: "兼容设备/架构",
+                tableContent1: "iOS 15.6 或更高版本",
+                tableContent2: "iPhone、iPad",
+                tableContent3: "Android 10.0 (API 26) 或更高版本",
+                tableContent4: "ARM64, ARMv7",
+                intro1: "传统同轴校准依赖人工经验，耗时3-5分钟，且易因人为误差导致边缘切割质量差，四边不一致，底部熔渣等问题。",
+                featureTitle1: "AI智能分析",
+                featureContent1: "高分辨率视觉传感器与AI智能算法，校准精度<0.08mm",
+                featureTitle2: "高成功率",
+                featureContent2: "同轴调整成功率100%。",
+                featureTitle3: "安全可靠",
+                featureContent3: "红光模拟，免射激光，无风险，更安全。",
+                intro2: "福州晋安光启智能科技有限公司是专业的工业自动化和智能制造解决方案提供商。",
+                wechatTip1: "请点击右上角 <i class='fas fa-ellipsis-v'></i> 图标",
+                wechatTip2: "选择「在默认浏览器中打开」以下载应用"
             }
-            iosDownload.addEventListener('click', showWechatTip);
-            androidDownload.addEventListener('click', showWechatTip);
-            yhsc.addEventListener('click', showWechatTip);
-            wechatTip.addEventListener('click', function() {
-                wechatTip.style.display = 'none';
+        };
+
+        // 设置页面语言的函数 - 新增了手册链接更新
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            
+            // 更新页面内容
+            document.getElementById('pageTitle').textContent = langResources[lang].pageTitle;
+            document.querySelector('.header-title').textContent = langResources[lang].headerTitle;
+            document.querySelector('.section-title-1').textContent = langResources[lang].sectionTitle1;
+            document.querySelector('.section-title-2').textContent = langResources[lang].sectionTitle2;
+            document.querySelector('.section-title-3').textContent = langResources[lang].sectionTitle3;
+            document.querySelector('.section-title-4').textContent = langResources[lang].sectionTitle4;
+            document.querySelector('.section-title-5').textContent = langResources[lang].sectionTitle5;
+            
+            document.querySelector('.info-label-1').textContent = langResources[lang].infoLabel1;
+            document.querySelector('.info-label-2').textContent = langResources[lang].infoLabel2;
+            document.querySelector('.info-label-3').textContent = langResources[lang].infoLabel3;
+            document.querySelector('.info-label-4').textContent = langResources[lang].infoLabel4;
+            
+            document.querySelector('.btn-ios').textContent = langResources[lang].btnIos;
+            document.querySelector('.btn-android').textContent = langResources[lang].btnAndroid;
+            document.querySelector('.btn-manual').textContent = langResources[lang].btnManual;
+            
+            // 更新用户手册链接
+            document.getElementById('manualDownload').href = langResources[lang].manualUrl;
+            
+            document.querySelector('.table-header-1').textContent = langResources[lang].tableHeader1;
+            document.querySelector('.table-header-2').textContent = langResources[lang].tableHeader2;
+            document.querySelector('.table-header-3').textContent = langResources[lang].tableHeader3;
+            document.querySelector('.table-header-4').textContent = langResources[lang].tableHeader4;
+            document.querySelector('.table-header-5').textContent = langResources[lang].tableHeader5;
+            
+            document.querySelector('.table-content-1').textContent = langResources[lang].tableContent1;
+            document.querySelector('.table-content-2').textContent = langResources[lang].tableContent2;
+            document.querySelector('.table-content-3').textContent = langResources[lang].tableContent3;
+            document.querySelector('.table-content-4').textContent = langResources[lang].tableContent4;
+            
+            document.querySelector('.intro-1').textContent = langResources[lang].intro1;
+            document.querySelector('.intro-2').textContent = langResources[lang].intro2;
+            
+            document.querySelector('.feature-title-1').textContent = langResources[lang].featureTitle1;
+            document.querySelector('.feature-content-1').textContent = langResources[lang].featureContent1;
+            document.querySelector('.feature-title-2').textContent = langResources[lang].featureTitle2;
+            document.querySelector('.feature-content-2').textContent = langResources[lang].featureContent2;
+            document.querySelector('.feature-title-3').textContent = langResources[lang].featureTitle3;
+            document.querySelector('.feature-content-3').textContent = langResources[lang].featureContent3;
+            
+            document.querySelector('.wechat-tip-1').innerHTML = langResources[lang].wechatTip1;
+            document.querySelector('.wechat-tip-2').innerHTML = langResources[lang].wechatTip2;
+            
+            // 更新激活的语言按钮
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
             });
-        } else {
-            iosDownload.href = 'https://apps.apple.com/cn/app/ai-vas/id6752219780';
-            androidDownload.href = 'https://wwpv.lanzouw.com/iP18m38cnlpi';
         }
+
+        // 检测用户系统语言
+        function detectUserLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang.includes('zh')) {
+                return 'zh';
+            } else {
+                return 'en';
+            }
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 根据系统设置设置初始语言
+            const initialLang = detectUserLanguage();
+            setLanguage(initialLang);
+            
+            // 添加语言切换功能
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    setLanguage(this.dataset.lang);
+                });
+            });
+
+            // 微信浏览器检测
+            function isWechatBrowser() {
+                const userAgent = navigator.userAgent.toLowerCase();
+                return userAgent.includes('micromessenger');
+            }
+            
+            const iosDownload = document.getElementById('iosDownload');
+            const androidDownload = document.getElementById('androidDownload');
+            const manualDownload = document.getElementById('manualDownload');
+            const wechatTip = document.getElementById('wechatTip');
+            
+            if (isWechatBrowser()) {
+                function showWechatTip(e) {
+                    e.preventDefault(); 
+                    wechatTip.style.display = 'flex'; 
+                }
+                iosDownload.addEventListener('click', showWechatTip);
+                androidDownload.addEventListener('click', showWechatTip);
+                manualDownload.addEventListener('click', showWechatTip);
+                
+                wechatTip.addEventListener('click', function() {
+                    wechatTip.style.display = 'none';
+                });
+            } else {
+                iosDownload.href = 'https://apps.apple.com/cn/app/ai-vas/id6752219780';
+                androidDownload.href = 'https://wwpv.lanzouw.com/iP18m38cnlpi';
+            }
+        });
     </script>
 </body>
 </html>
